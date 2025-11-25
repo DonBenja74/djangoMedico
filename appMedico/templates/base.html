@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema Médico{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    
+    .main-sidebar {
+        width: 240px;
+        background: #e5e5e5 !important;
+        color: #333;
+        border-right: 1px solid #ccc;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        border-radius: 0 10px 10px 0;
+        margin-top: 0 !important;  
+    }
+
+    
+    body.layout-fixed .main-sidebar {
+        top: 56px !important;  
+    }
+
+    
+    .content-wrapper {
+        margin-left: 240px;
+        transition: 0.3s ease;
+    }
+
+    
+    .content-wrapper {
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
+
+        
+        <ul class="navbar-nav ml-2 d-flex align-items-center">
+            <li class="nav-item mr-3">
+                <img src="{% static 'img/Talca.png' %}" 
+                    alt="Logo Talca" 
+                    style="height:40px; width:auto;">
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <span class="navbar-text font-weight-bold">
+                    Bienvenido {{ user.rol|title }}, {{ user.first_name }} {{ user.last_name }}
+                </span>
+            </li>
+            {% endif %}
+        </ul>
+
+        
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item mr-2">
+                {% if user.rol == "admin" %}
+                    <a href="{% url 'dashboard_admin' %}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                {% elif user.rol == "doctor" %}
+                    <a href="{% url 'dashboard_doctor' %}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                {% elif user.rol == "paciente" %}
+                    <a href="{% url 'dashboard_user' %}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                {% endif %}
+            </li>
+
+            <li class="nav-item">
+                <a href="/logout/" class="btn btn-danger btn-sm">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    
+    <aside class="main-sidebar elevation-2">
+        <div class="sidebar p-3">
+            <h5 class="text-secondary font-weight-bold"></h5>
+            <hr>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <div class="content-wrapper" style="padding-top: 80px;">
+        <section class="content">
+            <div class="container-fluid">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

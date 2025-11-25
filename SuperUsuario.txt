@@ -1,0 +1,1 @@
+SuperUsuario = admin | contraseña = 12345678

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Lista de Doctores{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Lista de Doctores</h1>
+
+<a href="/admin/doctores/crear/" class="btn btn-primary mb-3">Crear Doctor</a>
+
+<div class="card shadow">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Especialidad</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in object_list %}
+                <tr>
+                    <td>{{ d.id }}</td>
+                    <td>{{ d.usuario.first_name }} {{ d.usuario.last_name }}</td>
+                    <td>{{ d.especialidad }}</td>
+                    <td>{{ d.telefono }}</td>
+                    <td>
+                        <a href="/admin/doctores/editar/{{ d.id }}/" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="/admin/doctores/eliminar/{{ d.id }}/" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No hay doctores registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

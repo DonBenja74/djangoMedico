@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Bienvenido | Sistema Médico{% endblock %}
+
+{% block content %}
+
+<div class="content-wrapper p-4" style="min-height: 80vh;">
+
+    <div class="text-center mb-5">
+        <h1 class="display-4">Bienvenido al Sistema Médico</h1>
+        <p class="lead text-muted">Gestión de doctores, pacientes y atenciones clínicas.</p>
+    </div>
+
+    <div class="row justify-content-center">
+
+        
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <i class="fas fa-sign-in-alt fa-3x mb-3 text-primary"></i>
+                    <h4>Iniciar Sesión</h4>
+                    <p>Accede a tu cuenta para gestionar datos del sistema.</p>
+                    <a href="/login/" class="btn btn-primary btn-block">Ingresar</a>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-plus fa-3x mb-3 text-success"></i>
+                    <h4>Crear Cuenta</h4>
+                    <p>Regístrate como doctor o paciente.</p>
+                    <a href="/signup/" class="btn btn-success btn-block">Registrarse</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if user.is_authenticated and user.rol == "admin" %}
+    <div class="row justify-content-center mt-5">
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-primary">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-medical fa-3x mb-3 text-primary"></i>
+                    <h4>Registrar Nueva Atención</h4>
+                    <p>Crear una nueva atención médica para un paciente.</p>
+                    <a href="/admin/atenciones/crear/" class="btn btn-primary btn-block">Registrar Atención</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

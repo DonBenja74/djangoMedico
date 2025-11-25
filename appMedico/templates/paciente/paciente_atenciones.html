@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Mis Atenciones Médicas{% endblock %}
+
+{% block content %}
+<div class="content-wrapper p-4">
+
+    <h1 class="mb-4">Mis Atenciones</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Doctor</th>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                        <th>Diagnóstico</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for a in atenciones %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ a.doctor.usuario.first_name }} {{ a.doctor.usuario.last_name }}</td>
+                        <td>{{ a.fecha }}</td>
+                        <td>{{ a.descripcion }}</td>
+                        <td>{{ a.diagnostico }}</td>
+                    </tr>
+
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No tienes atenciones registradas aún.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

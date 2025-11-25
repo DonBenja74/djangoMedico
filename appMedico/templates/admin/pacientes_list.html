@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Lista de Pacientes{% endblock %}
+
+{% block content %}
+<div class="content-wrapper p-4">
+
+    <h1 class="mb-4">Lista de Pacientes</h1>
+
+    <a href="/admin/pacientes/crear/" class="btn btn-success mb-3">Crear Paciente</a>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Dirección</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in object_list %}
+                    <tr>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.usuario.first_name }} {{ p.usuario.last_name }}</td>
+                        <td>{{ p.fecha_nacimiento }}</td>
+                        <td>{{ p.direccion }}</td>
+                        <td>
+                            <a href="/admin/pacientes/editar/{{ p.id }}/" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="/admin/pacientes/eliminar/{{ p.id }}/" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">No hay pacientes registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Dashboard Administrador{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Panel del Administrador</h1>
+<div class="row">
+    
+    <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h4 class="mb-2">Doctores</h4>
+                <p>Gestión completa de doctores registrados.</p>
+                <a href="/admin/doctores/" class="btn btn-light mt-2">Ver lista</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h4 class="mb-2">Pacientes</h4>
+                <p>Lista y administración de pacientes.</p>
+                <a href="/admin/pacientes/" class="btn btn-light mt-2">Ver lista</a>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-4">
+        <div class="card bg-warning text-white shadow">
+            <div class="card-body">
+                <h4 class="mb-2">Atenciones Médicas</h4>
+                <p>Historial de consultas registradas.</p>
+                <a href="/admin/atenciones/" class="btn btn-light mt-2">Ver lista</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card border border-primary shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-primary">Registrar Doctor</h5>
+                <a href="/admin/doctores/crear/" class="btn btn-primary btn-block mt-2">
+                    Crear Nuevo Doctor
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border border-success shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-success">Registrar Paciente</h5>
+                <a href="/admin/pacientes/crear/" class="btn btn-success btn-block mt-2">
+                    Crear Nuevo Paciente
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border border-warning shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="text-warning">Registrar Atención</h5>
+                <a href="/admin/atenciones/crear/" class="btn btn-warning btn-block mt-2 text-white">
+                    Crear Nueva Atención
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

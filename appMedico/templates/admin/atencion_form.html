@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Registrar Atención{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Registrar Atención Médica</h1>
+
+<div class="card p-4 shadow" style="max-width: 700px; margin: auto;">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group mb-3">
+            <label>Doctor</label>
+            <select name="doctor" class="form-control" required>
+                <option value="">Seleccione un Doctor</option>
+                {% for d in doctores %}
+                <option value="{{ d.id }}">{{ d.usuario.first_name }} {{ d.usuario.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Paciente</label>
+            <select name="paciente" class="form-control" required>
+                <option value="">Seleccione un Paciente</option>
+                {% for p in pacientes %}
+                <option value="{{ p.id }}">{{ p.usuario.first_name }} {{ p.usuario.last_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Fecha</label>
+            <input type="date" name="fecha" class="form-control" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Descripción</label>
+            <textarea name="descripcion" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Diagnóstico</label>
+            <textarea name="diagnostico" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-warning text-white w-100">
+            Registrar Atención
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

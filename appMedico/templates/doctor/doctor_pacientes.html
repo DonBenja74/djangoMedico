@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Pacientes del Doctor{% endblock %}
+
+{% block content %}
+<div class="content-wrapper p-4">
+
+    <h1 class="mb-4">Mis Pacientes</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Dirección</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pacientes %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ p.usuario.first_name }} {{ p.usuario.last_name }}</td>
+                        <td>{{ p.fecha_nacimiento }}</td>
+                        <td>{{ p.direccion }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No tiene pacientes asignados todavía.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

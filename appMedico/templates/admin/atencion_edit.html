@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Editar Atención{% endblock %}
+
+{% block content %}
+<div class="content-wrapper p-4">
+
+    <h1 class="mb-4">Editar Atención Médica</h1>
+
+    <div class="card p-4 shadow" style="max-width: 700px; margin: auto;">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group mb-3">
+                <label>Doctor</label>
+                <select name="doctor" class="form-control" required>
+                    {% for d in doctores %}
+                        <option value="{{ d.id }}" {% if d.id == atencion.doctor.id %}selected{% endif %}>
+                            {{ d.usuario.first_name }} {{ d.usuario.last_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Paciente</label>
+                <select name="paciente" class="form-control" required>
+                    {% for p in pacientes %}
+                        <option value="{{ p.id }}" {% if p.id == atencion.paciente.id %}selected{% endif %}>
+                            {{ p.usuario.first_name }} {{ p.usuario.last_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Fecha</label>
+                <input type="datetime-local" name="fecha" class="form-control"
+                    value="{{ atencion.fecha|date:'Y-m-d\\TH:i' }}" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Descripción</label>
+                <textarea name="descripcion" class="form-control" required>{{ atencion.descripcion }}</textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Diagnóstico</label>
+                <textarea name="diagnostico" class="form-control" required>{{ atencion.diagnostico }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100 text-white">
+                Actualizar Atención
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

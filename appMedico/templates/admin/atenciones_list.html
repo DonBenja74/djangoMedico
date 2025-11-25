@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Lista de Atenciones{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Lista de Atenciones</h1>
+
+<a href="{% url 'atencion_create' %}" class="btn btn-primary mb-3">Registrar Atención</a>
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Doctor</th>
+                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Diagnóstico</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for a in object_list %}
+                <tr>
+                    <td>{{ a.id }}</td>
+                    <td>{{ a.doctor.usuario.first_name }} {{ a.doctor.usuario.last_name }}</td>
+                    <td>{{ a.paciente.usuario.first_name }} {{ a.paciente.usuario.last_name }}</td>
+                    <td>{{ a.fecha }}</td>
+                    <td>{{ a.descripcion|truncatechars:40 }}</td>
+                    <td>{{ a.diagnostico|truncatechars:40 }}</td>
+                    <td>
+
+                        <a href="{% url 'atencion_edit' a.id %}"
+                        class="btn btn-sm btn-warning">
+                        Editar
+                        </a>
+
+                        <a href="{% url 'atencion_delete' a.id %}"
+                        class="btn btn-sm btn-danger">
+                        Eliminar
+                        </a>
+
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No hay atenciones registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

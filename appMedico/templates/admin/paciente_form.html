@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Formulario Paciente{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    {% if paciente %}
+        Editar Paciente
+    {% else %}
+        Crear Paciente
+    {% endif %}
+</h1>
+
+<div class="card p-4 shadow" style="max-width: 600px; margin: auto;">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        
+        <h5>Datos de Usuario</h5>
+
+        <div class="form-group mb-3">
+            <label>Nombre</label>
+            <input type="text" name="first_name" class="form-control"
+                value="{{ paciente.usuario.first_name|default:'' }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Apellido</label>
+            <input type="text" name="last_name" class="form-control"
+                value="{{ paciente.usuario.last_name|default:'' }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control"
+                value="{{ paciente.usuario.email|default:'' }}" required>
+        </div>
+
+        {% if not paciente %}
+        <div class="form-group mb-3">
+            <label>Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        {% endif %}
+
+        <hr>
+
+        
+        <h5>Datos del Paciente</h5>
+
+        <div class="form-group mb-3">
+            <label>Fecha de nacimiento</label>
+            <input type="date" name="fecha_nacimiento" class="form-control"
+                value="{{ paciente.fecha_nacimiento|default:'' }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label>Dirección</label>
+            <input type="text" name="direccion" class="form-control"
+                value="{{ paciente.direccion|default:'' }}" required>
+        </div>
+
+        <button class="btn btn-success w-100" type="submit">
+            {% if paciente %}Actualizar{% else %}Crear{% endif %}
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
