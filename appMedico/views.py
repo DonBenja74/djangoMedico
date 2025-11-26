@@ -72,14 +72,14 @@ def dashboard_admin(request):
 def dashboard_doctor(request):
     if request.user.rol != "doctor":
         return redirect("login")
-    return render(request, "doctor/dashboardDoctor.html")
+    return render(request, "doctor/doctor.html")
 
 
 @login_required
 def dashboard_user(request):
     if request.user.rol != "paciente":
         return redirect("login")
-    return render(request, "paciente/dashboardUser.html")
+    return render(request, "paciente/usuario.html")
 
 
 
@@ -168,7 +168,7 @@ def doctor_delete(request, id):
         doctor.delete()
         return redirect("doctores_list")
 
-    return render(request, "common/delete_confirm.html", {"objeto": doctor})
+    return render(request, "common/eliminar.html", {"objeto": doctor})
 
 
 
@@ -232,7 +232,7 @@ def paciente_delete(request, id):
         paciente.delete()
         return redirect("pacientes_list")
 
-    return render(request, "common/delete_confirm.html", {"objeto": paciente})
+    return render(request, "common/eliminar.html", {"objeto": paciente})
 
 
 
@@ -303,7 +303,7 @@ def atencion_delete(request, id):
         atencion.delete()
         return redirect("atenciones_list")
 
-    return render(request, "common/delete_confirm.html", {"objeto": atencion})
+    return render(request, "common/eliminar.html", {"objeto": atencion})
 
 
 
