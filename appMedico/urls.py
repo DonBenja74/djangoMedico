@@ -9,12 +9,12 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     path("signup/", views.signup_view, name="signup"),
 
-    # DASHBOARDS (SIN /admin/ PARA EVITAR CONFLICTO)
+    # DASHBOARDS 
     path("dashboard/admin/", views.dashboard_admin, name="dashboard_admin"),
     path("dashboard/doctor/", views.dashboard_doctor, name="dashboard_doctor"),
     path("dashboard/paciente/", views.dashboard_user, name="dashboard_user"),
 
-    # ADMIN (TU ADMIN, NO DJANGO ADMIN)
+    # ADMIN 
     path("admin/doctores/", views.doctores_list, name="doctores_list"),
     path("admin/pacientes/", views.pacientes_list, name="pacientes_list"),
     path("admin/atenciones/", views.atenciones_list, name="atenciones_list"),
